@@ -180,7 +180,7 @@ class DuuxClimateAutoDiscovery(DuuxClimate):
         """Discover available presets."""
 
         # Guard against coordinator.data being None during initialization
-        modes: Any = self._coordinator.get("data", {}).get("availableModes")
+        modes: Any = (self._coordinator.data or {}).get("availableModes")
         if modes is None:
             modes = next(
                 DuuxClimateAutoDiscovery._deep_find(self._device, "availableModes"),
